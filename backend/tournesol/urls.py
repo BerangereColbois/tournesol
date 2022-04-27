@@ -16,7 +16,7 @@ from .views.criteria_correlations import ContributorCriteriaCorrelationsView
 from .views.email_domains import EmailDomainsList
 from .views.entities import EntitiesViewSet
 from .views.exports import ExportAllView, ExportComparisonsView, ExportPublicComparisonsView
-from .views.inconsistencies import ScoreInconsistencies
+from .views.inconsistencies import Length3Cycles, ScoreInconsistencies
 from .views.polls import PollsRecommendationsView, PollsView
 from .views.ratings import (
     ContributorRatingDetail,
@@ -93,6 +93,11 @@ urlpatterns = [
         name="ratings_me_detail",
     ),
     # Inconsistencies API
+    path(
+        "users/me/inconsistencies/length_3_cycles/<str:poll_name>",
+        Length3Cycles.as_view(),
+        name="length_3_cycles",
+    ),
     path(
         "users/me/inconsistencies/score/<str:poll_name>",
         ScoreInconsistencies.as_view(),
